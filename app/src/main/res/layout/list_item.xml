@@ -1,0 +1,54 @@
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView android:id="@+id/appNameTxtView"
+        android:layout_marginLeft="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_toLeftOf="@+id/hiddenIconChk"
+        android:textColor="@color/brand_dark"
+        android:layout_width="match_parent"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="16dp">
+    </TextView>
+    <TextView android:id="@+id/packageNameTxtView"
+        android:layout_alignParentLeft="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appNameTxtView"
+        android:layout_width="match_parent"
+        android:layout_toLeftOf="@+id/hiddenIconChk"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/brand_dark"
+        android:textSize="12dp"
+        android:textAppearance="?android:attr/textAppearanceMedium">
+    </TextView>
+    <CheckBox
+        android:id="@+id/allowedChk"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/hiddenIconChk"
+        android:layout_toLeftOf="@+id/allowedChk"
+        android:layout_marginRight="16dp"
+
+        android:layout_marginBottom="16dp"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:visibility="invisible"
+        >
+    </CheckBox>
+</RelativeLayout>

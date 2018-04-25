@@ -1,0 +1,43 @@
+<resources>
+
+    <string name="app_name">Palm Kiosk</string>
+    <string name="pref_ChangeUnlockCode">Change password</string>
+    <string name="pref_ChangeWebwiewURL">Webview URL</string>
+    <string name="pref_ClickAttempts">Tap on screen to unlock</string>
+    <string name="pref_TimeToUnlock">Time to unlock</string>
+    <string name="pref_AllowedApps">Allowed apps</string>
+    <string name="pref_OrderAllowedApps">Organize allowed apps</string>
+    <string name="pref_Exit">Disable and exit Kiosk app</string>
+    <string name="pref_About">About</string>
+    <string name="menu_settings">Settings</string>
+    <string name="pref_status">Kiosk Mode active</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="text_bluetooth_off">Bluetooth is Off</string>
+    <string name="text_bluetooth_on">Bluetooth is On</string>
+
+    <string name="text_enable">Enable</string>
+    <string name="text_disable">Disable</string>
+
+    <string name="text_view_paired">Paired devices</string>
+    <string name="text_scan_devices">Scan</string>
+    <string name="text_stop_scan">Scan devices</string>
+
+    <string name="text_list_paired_devices">Paired devices</string>
+    <string name="text_list_devices">Devices</string>
+
+    <string name="text_pair">Pair</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="palm_kiosk_v2">Palm Kiosk v.2.0</string>
+    <string name="not_set">Not set</string>
+    <string name="already_set">Already set</string>
+    <string name="pref_Background">Background</string>
+    <string name="pref_Log">Exit Log</string>
+    <string name="log_info">View Disable and exit Kiosk app log</string>
+    <string name="ok">OK</string>
+    <string name="clear">Clear</string>
+    <string name="change_pass_info">Click here to change your password</string>
+    <string name="reorder_info">Re-order allowed Kiosk Apps</string>
+
+</resources>

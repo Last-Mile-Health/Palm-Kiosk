@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+    <EditTextPreference
+        android:title="@string/pref_ChangeUnlockCode"
+        android:key="pref_UnlockCode"
+        android:summary="Change Unlock code"
+        android:inputType="numberPassword"
+        android:maxLength="6"/>
+    <EditTextPreference
+        android:title="@string/pref_ChangeWebwiewURL"
+        android:key="pref_ChangeWebviewURL"
+        android:summary="Change Webview URL"
+        android:defaultValue="http://">
+    </EditTextPreference>
+
+    <ListPreference
+        android:title="@string/pref_ClickAttempts"
+        android:summary="Taps on screen to unlock"
+        android:key="pref_ClickAttempts"
+        android:defaultValue="5"
+        android:entries="@array/listArray"
+        android:entryValues="@array/listValues" />
+
+    <ListPreference
+        android:title="@string/pref_TimeToUnlock"
+        android:summary="Period in seconds to unlock"
+        android:key="pref_TimeToUnlock"
+        android:defaultValue="3"
+        android:entries="@array/TouchTimeStr"
+        android:entryValues="@array/TouchTimeValue" />
+-->
+    <Preference
+        android:key="pref_AllowedApps"
+        android:summary="List of allowed Kiosk Apps"
+        android:title="@string/pref_AllowedApps" />
+
+    <Preference
+        android:key="pref_OrderAllowedApps"
+        android:summary="@string/reorder_info"
+        android:title="@string/pref_OrderAllowedApps" />
+
+
+    <!--
+    <Preference
+        android:title="@string/pref_Exit"
+        android:key="pref_Exit"
+    />
+    -->
+
+    <org.lastmilehealth.kiosk.PasswordTextPreference
+        android:defaultValue="1234"
+        android:inputType="numberPassword"
+        android:key="pref_UnlockCode"
+        android:summary="@string/change_pass_info"
+        android:maxLength="10"
+        android:title="@string/pref_ChangeUnlockCode" />
+
+    <SwitchPreference
+        android:key="pref_kiosk_mode"
+        android:summary="Enables/Disables the Kiosk mode"
+        android:title="@string/pref_status" />
+
+    <Preference
+        android:key="pref_Exit"
+        android:summary="Disables the Kiosk mode and triggers Home Launcher selection"
+        android:title="@string/pref_Exit" />
+
+    <Preference
+        android:key="pref_ExitLog"
+        android:summary="@string/log_info"
+        android:title="@string/pref_Log" />
+
+    <Preference
+        android:key="pref_Wallpaper"
+        android:summary="@string/not_set"
+        android:title="@string/pref_Background" />
+
+    <Preference
+        android:summary="@string/palm_kiosk_v2"
+        android:title="@string/pref_About" />
+
+</PreferenceScreen>

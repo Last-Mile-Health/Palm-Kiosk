@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="listArray">
+        <item>5 times</item>
+        <item>7 times</item>
+        <item>10 times</item>
+        <item>15 times</item>
+
+    </string-array>
+    <string-array name="listValues">
+        <item>5</item>
+        <item>7</item>
+        <item>10</item>
+        <item>15</item>
+    </string-array>
+
+    <string-array name="TouchTimeStr">
+        <item>3 sec</item>
+        <item>4 sec</item>
+        <item>5 sec</item>
+        <item>6 sec</item>
+    </string-array>
+
+    <string-array name="TouchTimeValue">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+
+    </string-array>
+</resources>
