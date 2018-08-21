@@ -24,4 +24,3 @@ app/app-release.apk
 *.apk
 changelog.txt
 *.log
-release.jks

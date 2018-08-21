@@ -17,6 +17,7 @@ import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -141,8 +142,8 @@ public class KioskModeUtil {
     }
 
     public static void triggerLauncherChooser(Context context) {
-        PackageManager packageManager = context.getPackageManager();
-        ComponentName componentName = new ComponentName(context, FakeLauncherActivity.class);
+        final PackageManager packageManager = context.getPackageManager();
+        final ComponentName componentName = new ComponentName(context, FakeLauncherActivity.class);
         packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
 
         Intent selector = new Intent(Intent.ACTION_MAIN);
@@ -151,8 +152,12 @@ public class KioskModeUtil {
         whiteListPackageForSpecificTime("android", TimeUnit.SECONDS.toMillis(10));
         context.startActivity(selector);
 
-        packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, PackageManager.DONT_KILL_APP);
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                packageManager.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DEFAULT, PackageManager.DONT_KILL_APP);
+            }
+        }, 500);
     }
 
     public static boolean isMyLauncherDefault(Context ctx) {
@@ -195,6 +200,7 @@ public class KioskModeUtil {
                     manager.addUserRestriction(name, UserManager.DISALLOW_REMOVE_USER);
                     manager.addUserRestriction(name, UserManager.DISALLOW_SAFE_BOOT);
                     manager.addUserRestriction(name, UserManager.DISALLOW_UNINSTALL_APPS);
+                    manager.setStatusBarDisabled(name, true);
                 } catch (SecurityException e) {
                     Log.e(TAG, "Can't set device owner policy. Is the app the device owner?");
                 }
@@ -233,6 +239,7 @@ public class KioskModeUtil {
                     manager.clearUserRestriction(name, UserManager.DISALLOW_REMOVE_USER);
                     manager.clearUserRestriction(name, UserManager.DISALLOW_SAFE_BOOT);
                     manager.clearUserRestriction(name, UserManager.DISALLOW_UNINSTALL_APPS);
+                    manager.setStatusBarDisabled(name, false);
                 }
             } catch (SecurityException e) {
                 Log.e(TAG, "Can't cancel policy");

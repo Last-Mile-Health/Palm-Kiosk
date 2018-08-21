@@ -10,8 +10,27 @@ android {
         applicationId "org.lastmilehealth.kiosk"
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 6
-        versionName "1.0"
+        versionCode 7
+        versionName "3.0"
+    }
+    signingConfigs {
+        release {
+            storeFile file("$rootProject.projectDir/release.jks")
+            storePassword 'lastmilehealth@play'
+            keyAlias 'lastmilehealth'
+            keyPassword 'lastmilehealth@play'
+        }
+    }
+    buildTypes {
+        buildTypes {
+            debug {
+            }
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
     }
 
 }

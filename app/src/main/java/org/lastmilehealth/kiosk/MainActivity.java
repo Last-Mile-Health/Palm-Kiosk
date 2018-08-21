@@ -274,7 +274,7 @@ public class MainActivity extends Activity {
 //        if (!hasFocus) {
 //            // Close every kind of system dialog
 //            Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-//            // sendBroadcast(closeDialog);
+//            //sendBroadcast(closeDialog);
 //        }
     }
 
