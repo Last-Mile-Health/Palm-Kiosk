@@ -1,7 +1,9 @@
 package org.lastmilehealth.kiosk;
 
 import android.app.ActivityManager;
+import android.app.Service;
 import android.app.admin.DevicePolicyManager;
+import android.app.usage.UsageEvents;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.ComponentName;
@@ -14,20 +16,17 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -63,6 +62,10 @@ public class KioskModeUtil {
             // is App in background?
             activePackage = getNameOfRunningPackageName(ctx);
 
+            if(activePackage == null){
+                Log.d(TAG, "activePackage: null, skipping");
+            }
+
             if (isInBackground(ctx)) {
                 restoreApp(ctx);
             }
@@ -79,17 +82,26 @@ public class KioskModeUtil {
 
 
     private static boolean isInBackground(Context ctx) {
-
         Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
         //sendBroadcast(closeDialog);
 
         return (!ctx.getApplicationContext().getPackageName().equals(activePackage));
-
     }
 
     private static String getNameOfRunningPackageName(Context ctx) {
         String topPackageName = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1){
+            UsageStatsManager mUsageStatsManager = (UsageStatsManager) ctx.getSystemService(Service.USAGE_STATS_SERVICE);
+            long time = System.currentTimeMillis();
+            UsageEvents usageEvents = mUsageStatsManager.queryEvents(time - 1000 * 3600, time);
+            UsageEvents.Event event = new UsageEvents.Event();
+            while (usageEvents.hasNextEvent()) {
+                usageEvents.getNextEvent(event);
+                if(event.getEventType() == UsageEvents.Event.MOVE_TO_FOREGROUND) {
+                    topPackageName = event.getPackageName();
+                }
+            }
+        } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.LOLLIPOP) {
             //noinspection ResourceType
             UsageStatsManager mUsageStatsManager = (UsageStatsManager) ctx.getSystemService("usagestats");
             long time = System.currentTimeMillis();
@@ -117,9 +129,7 @@ public class KioskModeUtil {
     }
 
     private static void restoreApp(Context ctx) {
-
         ActivityManager am = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
-
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         Set<String> myAps = prefs.getStringSet("allowed_apps", Collections.<String>emptySet());
@@ -134,7 +144,6 @@ public class KioskModeUtil {
                 Log.v("This is cool", "This is cool");
             }
         }
-
     }
 
     public static void whiteListPackageForSpecificTime(String s, long l) {
@@ -190,6 +199,7 @@ public class KioskModeUtil {
             if (isDeviceAdmin(context)) {
                 try {
                     ComponentName name = new ComponentName(context, KioskAdminReceiver.class);
+                    //TODO all calls below require Device/Profile owner, remove it until EMM is implemented
                     manager.addUserRestriction(name, UserManager.DISALLOW_ADD_USER);
                     manager.addUserRestriction(name, UserManager.DISALLOW_APPS_CONTROL);
                     manager.addUserRestriction(name, UserManager.DISALLOW_CONFIG_CREDENTIALS);

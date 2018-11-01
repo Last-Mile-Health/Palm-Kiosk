@@ -3,8 +3,6 @@ package org.lastmilehealth.kiosk;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AppOpsManager;
-import android.app.admin.DevicePolicyManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -42,7 +40,6 @@ import static android.app.Dialog.OnClickListener;
 
 
 public class MainActivity extends Activity {
-    //
 
     private int count = 0;
     public PackageManager PM;
