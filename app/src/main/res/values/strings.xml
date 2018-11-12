@@ -29,7 +29,7 @@
 
     <string name="text_pair">Pair</string>
     <string name="bluetooth">Bluetooth</string>
-    <string name="palm_kiosk_v2">Palm Kiosk v.2.0</string>
+    <string name="palm_kiosk_version">Palm Kiosk v.3.0</string>
     <string name="not_set">Not set</string>
     <string name="already_set">Already set</string>
     <string name="pref_Background">Background</string>

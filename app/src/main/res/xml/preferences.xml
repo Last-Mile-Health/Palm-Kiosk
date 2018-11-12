@@ -77,7 +77,7 @@
         android:title="@string/pref_Background" />
 
     <Preference
-        android:summary="@string/palm_kiosk_v2"
+        android:summary="@string/palm_kiosk_version"
         android:title="@string/pref_About" />
 
 </PreferenceScreen>
